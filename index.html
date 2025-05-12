@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Simples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #00c3ff;
+        }
+        
+        .active {
+            color: #00c3ff !important;
+            border-bottom: 2px solid #00c3ff;
+        }
+        
+        section {
+            min-height: 100vh;
+            padding: 2rem;
+            display: none;
+        }
+        
+        section.active-section {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .iso-container {
+            background-color: #f0f8ff;
+            width: 100%;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .iso-image {
+            height: 100%;
+            max-width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Atividade 1 - Qualidade de Software</div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active" data-target="home">Home</a>
+            <a href="#iso" class="nav-link" data-target="iso">ISO</a>
+            <a href="#sobre" class="nav-link" data-target="sobre">Sobre</a>
+        </div>
+    </nav>
+    
+    <section id="home" class="active-section">
+        <h1>Conceitos da ISO 25010</h1>
+        <p>ISO é a sigla para <i>International Organization for Standardization</i>, uma organização internacional que promove a padronização de produtos e serviços por meio de normas internacionais. Já o IEC se refere à Comissão Eletrotécnica Internacional, que trabalha para normatização de tecnologias elétricas, eletrônicas e relacionadas. Em conjunto, ambas desenvolvem as normas ISO/IEC e, especificamente a 25010, versa sobre <b>qualidade de software.</b></p>
+        <p>A ISO/IEC 25010 é um padrão ISO para qualidade de software, disponibilizada em 2011, substituindo a ISO/IEC 9126. Ela <u>descreve</u> um modelo de qualidade de software.
+        Por definição, modelo de qualidade é o conjunto definido de características, categorias de atributos de qualidade de software, e relações entre elas. Essa arquitetura fornece a estrutura para especificar os <u>requisitos de qualidade</u> e avaliá-los.</p>
+        <p>A norma ISO/IEC 25010 é essencial para avaliar a qualidade do software, abrangendo características como confiabilidade, usabilidade e manutenibilidade. Essa norma orienta o desenvolvimento de soluções que atendem às necessidades dos usuários, promovendo confiança e destacando produtos em um mercado competitivo.</p>
+        <p>Suas características estão especificadas no menu "ISO"</p>
+    </section>
+    
+    <section id="iso">
+        <h1>Características da ISO 25010</h1>
+        <p>Veja na imagem abaixo as características da ISO 25010:</p>
+        <div class="iso-container">
+            <img src="imagens/ISO-25010.png" alt="Certificação ISO" class="iso-image">
+        </div>
+    </section>
+    
+    <section id="sobre">
+        <h1>Sobre</h1>
+        <p>Sou a Jennifer Diniz, tenho 23 anos, atualmente graduanda em Sistemas para Internet e Gestão de TI, procuro sempre estar alinhada com as tecnologias de meu interesse, por meio dos estudos, sou estagiária de Informática <i>Forense</i>. Ainda não possuo experiência profissional na área.</p>
+        <p>Interesse em:</p>
+        <ul>
+            <li>Desenvolvimento Front-End</li>
+            <li>Design UX e UI</li>
+            <li>Automação e aprendizado de máquina</li>
+            <li>Educação em Computação</li>
+        </ul>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtém todos os links da navegação
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Adiciona um evento de clique para cada link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove a classe "active" de todos os links
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    
+                    // Adiciona a classe "active" ao link clicado
+                    this.classList.add('active');
+                    
+                    // Obtém o id da seção alvo a partir do atributo data-target
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // Esconde todas as seções
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.remove('active-section');
+                    });
+                    
+                    // Mostra a seção alvo
+                    document.getElementById(targetId).classList.add('active-section');
+                    
+                    // Atualiza a URL com o hash
+                    window.location.hash = targetId;
+                });
+            });
+            
+            // Verifica se há um hash na URL ao carregar a página
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                
+                if (targetLink) {
+                    // Simula um clique no link correspondente
+                    targetLink.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
